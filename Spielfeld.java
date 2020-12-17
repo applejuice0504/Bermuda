@@ -1,10 +1,8 @@
-package wilemer.arnold.java;
-
-class SpielFeld {
+public class SpielFeld {
 	
-	final int X = 9;
-	final int Y = 7;
-	final int MAXSCHIFF = 4;
+	private final int X = 9;
+	private final int Y = 7;
+	private final int MAXSCHIFF = 4;
 	
 	private Schiff schiff[] = new Schiff[MAXSCHIFF];
 	private char feld[][] = new char[X][];
