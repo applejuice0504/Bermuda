@@ -24,7 +24,7 @@ public class SpielFeld {
 				
 	}
 	
-	public char get(int x, int y){
+	public char getFeld(int x, int y){
 		return feld[x][y];
 	}
 	

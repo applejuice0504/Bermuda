@@ -3,8 +3,13 @@ public class BermudaMain {
 		public static void main(String[] args) {
 		
 		SpielFeld feld = new SpielFeld();
-		System.out.println("Y:" + feld.getY());		
-
+		
+		for (int y=0; y<feld.getY(); y++) {
+			for (int x=0; x<feld.getX(); x++) {
+				System.out.print(" " + feld.getFeld(x, y));
+			}
+			System.out.println();
+		}
 		
 	}	
 

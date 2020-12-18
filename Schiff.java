@@ -1,6 +1,10 @@
 public class Schiff {
 	
-	private int i, j;
-	private boolean gefunden;
+	private int x, y;
+	private boolean istGefunden;
+	
+	public boolean istGefunden() {
+		return istGefunden;
+	}
 	
 }
