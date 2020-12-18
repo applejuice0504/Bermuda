@@ -39,8 +39,7 @@ public class SpielFeld {
 			}
 			
 			//Koordinaten setzen
-			schiff[i].setX(x);
-			schiff[i].setY(y);
+			schiff[i].setPos(x,y);
 		}		
 	}
 	
