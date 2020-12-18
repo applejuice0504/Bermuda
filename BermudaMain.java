@@ -1,6 +1,6 @@
 public class BermudaMain {
 	
-		public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		SpielFeld feld = new SpielFeld();
 		
@@ -9,8 +9,7 @@ public class BermudaMain {
 				System.out.print(" " + feld.getFeld(x, y));
 			}
 			System.out.println();
-		}
-		
-	}	
+		}	
+	}
 
 }
