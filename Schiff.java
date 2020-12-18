@@ -1,11 +1,7 @@
 public class Schiff {
 	
-	private int x, y;
-	private boolean istGefunden;
-	
-	public boolean istGefunden() {
-		return this.istGefunden;
-	}
+	private int x=0, y=0;
+	private boolean istGefunden=false;
 	
 	public int getX() {
 		return this.x;
@@ -26,6 +22,14 @@ public class Schiff {
 		else {
 			return false;
 		} 
+	}
+	
+	public void aufdecken() {
+		this.istGefunden = true;
+	}
+	
+	public boolean istGefunden() {
+		return this.istGefunden;
 	}
 	
 }

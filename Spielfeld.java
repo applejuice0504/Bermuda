@@ -8,6 +8,7 @@ public class SpielFeld {
 	
 	private Schiff schiff[] = new Schiff[MAXSCHIFF];
 	private char feld[][] = new char[X][];
+	private final char SCHIFF = 'X';
 	
 	SpielFeld() {
 		
@@ -46,13 +47,13 @@ public class SpielFeld {
 	public char getFeld(int x, int y){
 		return feld[x][y];
 	}
-	
-	public int getX() {
-		return X;
-	}
-	
-	public int getY() {
-		return Y;
+
+	public boolean alleGefunden() {
+		for (Schiff i : schiff) {
+			if (!i.istGefunden())
+				return false;
+		}
+		return true;
 	}
 	
 }
