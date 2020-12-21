@@ -16,6 +16,7 @@ public class Schiff {
 		this.y = y;
 	}
 	
+	//Prüft ob sich das Schiff an den Input Koordinaten befindet
 	public boolean isPos(int x, int y) {
 		if (this.x == x && this.y == y) 
 			return true;
@@ -24,6 +25,7 @@ public class Schiff {
 		} 
 	}
 	
+	//setzt istGefunden auf wahr
 	public void aufdecken() {
 		this.istGefunden = true;
 	}

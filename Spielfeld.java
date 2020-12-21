@@ -12,7 +12,7 @@ public class SpielFeld {
 	
 	SpielFeld() {
 		
-		// Leeres Spielfeld anlegen und mit + als Wasser belegen
+		// Leeres Spielfeld anlegen und mit '+' als Wasser belegen
 		for (int x=0; x<X; x++) {
 			feld[x] = new char[Y];
 			for (int y=0; y<Y; y++) {
@@ -25,7 +25,7 @@ public class SpielFeld {
 			schiff[i] = new Schiff();
 		}
 		
-		//Schiff zufällig verteilen
+		//Schiffe zufällig verteilen
 		Random zufall = new Random();
 
 		for (int i = 0; i<MAXSCHIFF; i++) {
@@ -44,16 +44,82 @@ public class SpielFeld {
 		}		
 	}
 	
+	public int getX() {
+		return X;
+	}
+	
+	public int getY() {
+		return Y;
+	}
+	
+	//Gibt den Inahlt des Spielfeldes an angefragter Position zurück
 	public char getFeld(int x, int y){
 		return feld[x][y];
 	}
 
+	//Durchläuft alle Schiffe und prüft ob alle aufgedeckt wurden
 	public boolean alleGefunden() {
 		for (Schiff i : schiff) {
-			if (!i.istGefunden())
+			if (!i.istGefunden())	//sobald ein Schiff noch nicht gefunden wurde, können nicht alleGefunden sein...
 				return false;
 		}
 		return true;
+	}
+	
+	//
+	public char suche (int x, int y) {
+		int index = getSchiffNr(x,y);
+		if (index>0) {
+			feld[x][y] = SCHIFF;
+			schiff[index].aufdecken();
+		} else {
+			int anzahl = 0;
+			for (int diffX = -1; diffX <=1; diffX++) {
+				for (int diffY = -1; diffY <=1; diffY++) {
+					if ( !(diffX == 0 && diffY==0) )	// es dürfen nicht diffX und diffY 0 sein, ansonten bewegt sich linienLauf nicht
+						anzahl += linieLaufen(x,y, diffX, diffY);
+				}
+			}
+			feld[x][y]=(char) ('0' + anzahl);
+		}	
+		return feld[x][y]; 		
+	}
+	
+	private int linieLaufen(int x, int y, int diffX, int diffY) {
+		
+		//Schleife solange wir im Feld sind
+		while ( x>=0 && x<X && y>=0 && y<Y ) { 
+			
+			//Sicherstellen, dass wir nicht aus dem Spielfeld laufen, bevor x erhöht wird
+			if ( x == 0 && diffX < 0 ) {}
+			else if ( x == X-1 && diffX > 0 ) {}
+			else {
+				x+= diffX;
+			}
+			
+			//Sicherstellen, dass wir nicht aus dem Spielfeld laufen, bevor y erhöht wird
+			if ( y == 0 && diffY < 0 ) {} 
+			else if ( y == Y-1 && diffY > 0 ) {} 
+			else {
+				y+= diffY;
+			}
+			
+			//Prüfen ob an der neuen Posotion ein Schiff ist, falls ja mit return 1 zurück 
+			//ansonsten weiter wandern in der while Schleife
+			if (getSchiffNr(x,y)>0)
+				return 1;
+		}
+		return 0;
+	}
+	
+	//Gibt zurück wenn an der abgefragten Position ein Schiff liegt
+	private int getSchiffNr(int x, int y) {
+		for (int i = 0; i < MAXSCHIFF; i++) {
+			if (schiff[i].isPos(x,y)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 }
