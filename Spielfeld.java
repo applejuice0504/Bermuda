@@ -45,16 +45,16 @@ public class SpielFeld {
 	}
 	
 	public int getX() {
-		return X;
+		return this.X;
 	}
 	
 	public int getY() {
-		return Y;
+		return this.Y;
 	}
 	
 	//Gibt den Inahlt des Spielfeldes an angefragter Position zurück
 	public char getFeld(int x, int y){
-		return feld[x][y];
+		return this.feld[x][y];
 	}
 
 	//Durchläuft alle Schiffe und prüft ob alle aufgedeckt wurden
@@ -69,14 +69,14 @@ public class SpielFeld {
 	//
 	public char suche (int x, int y) {
 		int index = getSchiffNr(x,y);
-		if (index>0) {
+		if (index>0) {						//prüfen ob man nicht schon auf ein Schiff getippt hat
 			feld[x][y] = SCHIFF;
 			schiff[index].aufdecken();
-		} else {
+		} else {							//ansonsten in alle Himmelsrichtungen wandern
 			int anzahl = 0;
 			for (int diffX = -1; diffX <=1; diffX++) {
 				for (int diffY = -1; diffY <=1; diffY++) {
-					if ( !(diffX == 0 && diffY==0) )	// es dürfen nicht diffX und diffY 0 sein, ansonten bewegt sich linienLauf nicht
+					if ( !(diffX == 0 && diffY==0) )	// es dürfen nicht diffX UND diffY 0 sein, ansonten bewegt sich linienLauf nicht
 						anzahl += linieLaufen(x,y, diffX, diffY);
 				}
 			}
@@ -90,19 +90,8 @@ public class SpielFeld {
 		//Schleife solange wir im Feld sind
 		while ( x>=0 && x<X && y>=0 && y<Y ) { 
 			
-			//Sicherstellen, dass wir nicht aus dem Spielfeld laufen, bevor x erhöht wird
-			if ( x == 0 && diffX < 0 ) {}
-			else if ( x == X-1 && diffX > 0 ) {}
-			else {
-				x+= diffX;
-			}
-			
-			//Sicherstellen, dass wir nicht aus dem Spielfeld laufen, bevor y erhöht wird
-			if ( y == 0 && diffY < 0 ) {} 
-			else if ( y == Y-1 && diffY > 0 ) {} 
-			else {
-				y+= diffY;
-			}
+			x += diffX;
+			y += diffY;
 			
 			//Prüfen ob an der neuen Posotion ein Schiff ist, falls ja mit return 1 zurück 
 			//ansonsten weiter wandern in der while Schleife
