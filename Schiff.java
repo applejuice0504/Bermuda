@@ -4,7 +4,7 @@ public class Schiff {
 	private boolean istGefunden=false;
 	
 	public int getX() {
-		return this.x;
+			return this.x;
 	}
 	
 	public int getY() {
@@ -12,7 +12,7 @@ public class Schiff {
 	}
 	
 	public void setPos(int x, int y) {
-		this.x = x;
+				this.x = x;
 		this.y = y;
 	}
 	

@@ -44,6 +44,10 @@ public class SpielFeld {
 		}		
 	}
 	
+	public char getSCHIFF() {
+		return SCHIFF;		
+	}
+	
 	public int getX() {
 		return this.X;
 	}
@@ -69,7 +73,7 @@ public class SpielFeld {
 	//
 	public char suche (int x, int y) {
 		int index = getSchiffNr(x,y);
-		if (index>0) {						//prüfen ob man nicht schon auf ein Schiff getippt hat
+		if (index>=0) {						//prüfen ob man nicht schon auf ein Schiff getippt hat
 			feld[x][y] = SCHIFF;
 			schiff[index].aufdecken();
 		} else {							//ansonsten in alle Himmelsrichtungen wandern
